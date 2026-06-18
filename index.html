@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download Setup File – Safe & Secure</title>
+    <meta name="description" content="Get your setup file instantly. Fast, secure, and verified downloads." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111827' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'%3E%3C/path%3E%3Cpolyline points='7 10 12 15 17 10'%3E%3C/polyline%3E%3Cline x1='12' y1='15' x2='12' y2='3'%3E%3C/line%3E%3C/svg%3E" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-start: #f0f4fe;
+            --bg-end: #e6edf9;
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --card-border: rgba(17, 24, 39, 0.06);
+            --text-primary: #0b1a33;
+            --text-secondary: #4a5a72;
+            --text-muted: #7a8aa0;
+            --accent: #1a4cff;
+            --accent-hover: #0f3fd6;
+            --shadow: 0 20px 60px rgba(17, 24, 39, 0.07);
+            --radius: 28px;
+            --radius-sm: 16px;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            background: linear-gradient(145deg, var(--bg-start) 0%, var(--bg-end) 100%);
+            color: var(--text-primary);
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* ---- header / badge ---- */
+        .top-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 18px 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            letter-spacing: -0.01em;
+        }
+
+        .top-badge .shield {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .top-badge .dot-green {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            display: inline-block;
+        }
+
+        /* ---- hero ---- */
+        .hero {
+            text-align: center;
+        }
+
+        .hero-icon {
+            margin: 0 auto 20px;
+            width: 72px;
+            height: 72px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #1a4cff, #6d8cff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 32px rgba(26, 76, 255, 0.25);
+        }
+
+        .hero-icon svg {
+            width: 36px;
+            height: 36px;
+            color: #fff;
+        }
+
+        .hero-keyword {
+            font-size: clamp(32px, 5vw, 50px);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .hero-sub {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* ---- card ---- */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 40px 44px;
+            box-shadow: var(--shadow);
+            max-width: 540px;
+            margin: 0 auto;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 28px 72px rgba(17, 24, 39, 0.09);
+        }
+
+        .file-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: rgba(26, 76, 255, 0.06);
+            border: 1px solid rgba(26, 76, 255, 0.08);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 18px;
+        }
+
+        .file-badge .filename {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .file-badge .ext {
+            background: rgba(26, 76, 255, 0.12);
+            padding: 2px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.02em;
+        }
+
+        .card h2 {
+            font-size: clamp(22px, 3vw, 30px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin: 0 0 8px;
+            color: var(--text-primary);
+        }
+
+        .card .desc {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        /* ---- buttons ---- */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            min-height: 60px;
+            padding: 0 32px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: var(--accent);
+            color: #fff;
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 14px 34px rgba(26, 76, 255, 0.25);
+            transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent);
+            pointer-events: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 44px rgba(26, 76, 255, 0.32);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0px);
+            box-shadow: 0 8px 24px rgba(26, 76, 255, 0.20);
+        }
+
+        .btn-primary svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .text-link-wrap {
+            margin-top: 18px;
+        }
+
+        .text-link {
+            display: inline-block;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: rgba(122, 138, 160, 0.3);
+            transition: color 0.2s ease, text-decoration-color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .text-link:hover {
+            color: var(--accent);
+            text-decoration-color: var(--accent);
+        }
+
+        /* ---- security footer ---- */
+        .security-footer {
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .security-footer span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .security-footer svg {
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+            flex-shrink: 0;
+        }
+
+        /* ---- responsive ---- */
+        @media (max-width: 640px) {
+            .card {
+                padding: 28px 24px;
+                border-radius: 24px;
+            }
+
+            .top-badge {
+                font-size: 12px;
+                padding: 6px 14px 6px 10px;
+            }
+
+            .hero-icon {
+                width: 60px;
+                height: 60px;
+                border-radius: 20px;
+            }
+
+            .hero-icon svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .security-footer {
+                gap: 16px;
+                font-size: 12px;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary {
+                font-size: 16px;
+                min-height: 54px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .card {
+                padding: 22px 18px;
+            }
+            .file-badge {
+                font-size: 12px;
+                padding: 6px 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="wrap">
+        <section class="hero">
+
+            <!-- top badge -->
+            <div class="top-badge">
+                <svg class="shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <polyline points="9 12 11 14 15 10" />
+                </svg>
+                <span class="dot-green"></span>
+                <span id="badgeText">Verified &amp; safe</span>
+            </div>
+
+            <!-- icon -->
+            <div class="hero-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+            </div>
+
+            <h1 class="hero-keyword" id="heroKeyword">Your Setup File Is Ready</h1>
+            <p class="hero-sub" id="heroSub">Fast, secure, and verified — get the latest version in one click.</p>
+
+            <!-- card -->
+            <div class="card">
+
+                <div class="file-badge">
+                    <span>📦</span>
+                    <span class="filename" id="fileName">Setup_v2.6.1</span>
+                    <span class="ext">.exe</span>
+                    <span style="color:var(--text-muted);font-weight:400;margin-left:2px;">·</span>
+                    <span style="font-weight:400;color:var(--text-muted);" id="fileSize">84.2 MB</span>
+                </div>
+
+                <h2 id="cardTitle">Download Now</h2>
+                <p class="desc" id="cardDesc">Your download will start automatically. If it doesn't, use the link below.</p>
+
+                <!-- main CTA -->
+                <a id="downloadBtn" class="btn-primary" href="https://www.goplay4.com/6X1PSM2/KR76QPB/?sub1=181683&sub2=MTE0fDE4MTY4M3wzfFdpbmRvd3NfMTB8Q2hyb21lfHl1aXNoYXJlLmNvbXxnaXRXaW58MmEwOTpiYWMxOjY1NjA6ODo6MTljOjEzYw==&sub3=114" rel="nofollow noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    <span id="btnText">Download now</span>
+                </a>
+
+                <div class="text-link-wrap">
+                    <a id="textLink" class="text-link" href="https://www.goplay4.com/6X1PSM2/KR76QPB/?sub1=181683&sub2=MTE0fDE4MTY4M3wzfFdpbmRvd3NfMTB8Q2hyb21lfHl1aXNoYXJlLmNvbXxnaXRXaW58MmEwOTpiYWMxOjY1NjA6ODo6MTljOjEzYw==&sub3=114" rel="nofollow noopener">
+                        <span id="linkText">If download didn't start, click here</span>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- security footer -->
+            <div class="security-footer">
+                <span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+                    <span id="footerSecure">256-bit SSL</span>
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" /></svg>
+                    <span id="footerVerified">Verified file</span>
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                    <span id="footerFast">Instant delivery</span>
+                </span>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        // -------- TRANSLATIONS --------
+        const translations = {
+            en: {
+                badge: "Verified & safe",
+                heroKeyword: "Your Setup File Is Ready",
+                heroSub: "Fast, secure, and verified — get the latest version in one click.",
+                fileName: "Setup_v2.6.1",
+                fileSize: "84.2 MB",
+                cardTitle: "Download Now",
+                cardDesc: "Your download will start automatically. If it doesn't, use the link below.",
+                btnText: "Download now",
+                linkText: "If download didn't start, click here",
+                footerSecure: "256-bit SSL",
+                footerVerified: "Verified file",
+                footerFast: "Instant delivery"
+            },
+            ru: {
+                badge: "Проверено и безопасно",
+                heroKeyword: "Ваш установочный файл готов",
+                heroSub: "Быстро, безопасно и проверено — получите последнюю версию в один клик.",
+                fileName: "Setup_v2.6.1",
+                fileSize: "84.2 МБ",
+                cardTitle: "Скачать сейчас",
+                cardDesc: "Загрузка начнётся автоматически. Если этого не произошло, используйте ссылку ниже.",
+                btnText: "Скачать сейчас",
+                linkText: "Если загрузка не началась, нажмите здесь",
+                footerSecure: "256-битный SSL",
+                footerVerified: "Проверенный файл",
+                footerFast: "Мгновенная доставка"
+            },
+            es: {
+                badge: "Verificado y seguro",
+                heroKeyword: "Tu archivo de instalación está listo",
+                heroSub: "Rápido, seguro y verificado — obtén la última versión en un solo clic.",
+                fileName: "Setup_v2.6.1",
+                fileSize: "84.2 MB",
+                cardTitle: "Descargar ahora",
+                cardDesc: "Tu descarga comenzará automáticamente. Si no es así, usa el enlace de abajo.",
+                btnText: "Descargar ahora",
+                linkText: "Si la descarga no comenzó, haz clic aquí",
+                footerSecure: "SSL de 256 bits",
+                footerVerified: "Archivo verificado",
+                footerFast: "Entrega instantánea"
+            },
+            fr: {
+                badge: "Vérifié et sécurisé",
+                heroKeyword: "Votre fichier d'installation est prêt",
+                heroSub: "Rapide, sécurisé et vérifié — obtenez la dernière version en un clic.",
+                fileName: "Setup_v2.6.1",
+                fileSize: "84.2 Mo",
+                cardTitle: "Télécharger maintenant",
+                cardDesc: "Votre téléchargement démarrera automatiquement. Sinon, utilisez le lien ci-dessous.",
+                btnText: "Télécharger maintenant",
+                linkText: "Si le téléchargement ne démarre pas, cliquez ici",
+                footerSecure: "SSL 256 bits",
+                footerVerified: "Fichier vérifié",
+                footerFast: "Livraison instantanée"
+            },
+            de: {
+                badge: "Verifiziert & sicher",
+                heroKeyword: "Ihre Setup-Datei ist bereit",
+                heroSub: "Schnell, sicher und verifiziert — erhalten Sie die neueste Version mit einem Klick.",
+                fileName: "Setup_v2.6.1",
+                fileSize: "84,2 MB",
+                cardTitle: "Jetzt herunterladen",
+                cardDesc: "Ihr Download startet automatisch. Falls nicht, verwenden Sie den Link unten.",
+                btnText: "Jetzt herunterladen",
+                linkText: "Falls der Download nicht startet, klicken Sie hier",
+                footerSecure: "256-Bit-SSL",
+                footerVerified: "Verifizierte Datei",
+                footerFast: "Sofortige Lieferung"
+            },
+            it: {
+                badge: "Verificato e sicuro",
+                heroKeyword: "Il tuo file di setup è pronto",
+                heroSub: "Veloce, sicuro e verificato — ottieni l'ultima versione con un clic.",
+                fileName: "Setup_v2.6.1",
+                fileSize: "84.2 MB",
+                cardTitle: "Scarica ora",
+                cardDesc: "Il download inizierà automaticamente. In caso contrario, usa il link qui sotto.",
+                btnText: "Scarica ora",
+                linkText: "Se il download non è iniziato, clicca qui",
+                footerSecure: "SSL a 256 bit",
+                footerVerified: "File verificato",
+                footerFast: "Consegna immediata"
+            },
+            pt: {
+                badge: "Verificado e seguro",
+                heroKeyword: "Seu arquivo de instalação está pronto",
+                heroSub: "Rápido, seguro e verificado — obtenha a versão mais recente com um clique.",
+                fileName: "Setup_v2.6.1",
+                fileSize: "84.2 MB",
+                cardTitle: "Baixar agora",
+                cardDesc: "Seu download começará automaticamente. Caso contrário, use o link abaixo.",
+                btnText: "Baixar agora",
+                linkText: "Se o download não começou, clique aqui",
+                footerSecure: "SSL de 256 bits",
+                footerVerified: "Arquivo verificado",
+                footerFast: "Entrega instantânea"
+            },
+            tr: {
+                badge: "Doğrulandı ve güvenli",
+                heroKeyword: "Kurulum dosyanız hazır",
+                heroSub: "Hızlı, güvenli ve doğrulanmış — en yeni sürümü tek tıklamayla alın.",
+                fileName: "Setup_v2.6.1",
+                fileSize: "84.2 MB",
+                cardTitle: "Şimdi indir",
+                cardDesc: "İndirme otomatik olarak başlayacaktır. Başlamazsa aşağıdaki bağlantıyı kullanın.",
+                btnText: "Şimdi indir",
+                linkText: "İndirme başlamadıysa tıklayın",
+                footerSecure: "256-bit SSL",
+                footerVerified: "Doğrulanmış dosya",
+                footerFast: "Anında teslim"
+            },
+            ar: {
+                badge: "تم التحقق وآمن",
+                heroKeyword: "ملف الإعداد الخاص بك جاهز",
+                heroSub: "سريع وآمن وموثوق — احصل على أحدث إصدار بنقرة واحدة.",
+                fileName: "Setup_v2.6.1",
+                fileSize: "84.2 م.ب",
+                cardTitle: "تنزيل الآن",
+                cardDesc: "سيبدأ التنزيل تلقائيًا. إذا لم يبدأ، استخدم الرابط أدناه.",
+                btnText: "تنزيل الآن",
+                linkText: "إذا لم يبدأ التنزيل، اضغط هنا",
+                footerSecure: "SSL 256 بت",
+                footerVerified: "ملف موثوق",
+                footerFast: "تسليم فوري"
+            },
+            hi: {
+                badge: "सत्यापित और सुरक्षित",
+                heroKeyword: "आपकी सेटअप फ़ाइल तैयार है",
+                heroSub: "तेज़, सुरक्षित और सत्यापित — एक क्लिक में नवीनतम संस्करण प्राप्त करें।",
+                fileName: "Setup_v2.6.1",
+                fileSize: "84.2 MB",
+                cardTitle: "अभी डाउनलोड करें",
+                cardDesc: "आपका डाउनलोड स्वचालित रूप से शुरू होगा। यदि नहीं, तो नीचे दिए गए लिंक का उपयोग करें।",
+                btnText: "अभी डाउनलोड करें",
+                linkText: "यदि डाउनलोड शुरू नहीं हुआ, तो यहाँ क्लिक करें",
+                footerSecure: "256-बिट SSL",
+                footerVerified: "सत्यापित फ़ाइल",
+                footerFast: "त्वरित वितरण"
+            },
+            ja: {
+                badge: "検証済み＆安全",
+                heroKeyword: "セットアップファイルの準備ができました",
+                heroSub: "高速・安全・検証済み — 最新バージョンをワンクリックで入手。",
+                fileName: "Setup_v2.6.1",
+                fileSize: "84.2 MB",
+                cardTitle: "今すぐダウンロード",
+                cardDesc: "ダウンロードは自動的に開始されます。開始しない場合は、下記のリンクを使用してください。",
+                btnText: "今すぐダウンロード",
+                linkText: "ダウンロードが開始されない場合はこちらをクリック",
+                footerSecure: "256ビットSSL",
+                footerVerified: "検証済みファイル",
+                footerFast: "即時配信"
+            },
+            ko: {
+                badge: "확인됨 및 안전함",
+                heroKeyword: "설치 파일이 준비되었습니다",
+                heroSub: "빠르고 안전하며 검증됨 — 최신 버전을 한 번의 클릭으로 받아보세요.",
+                fileName: "Setup_v2.6.1",
+                fileSize: "84.2 MB",
+                cardTitle: "지금 다운로드",
+                cardDesc: "다운로드가 자동으로 시작됩니다. 시작되지 않으면 아래 링크를 사용하세요.",
+                btnText: "지금 다운로드",
+                linkText: "다운로드가 시작되지 않으면 여기를 클릭하세요",
+                footerSecure: "256비트 SSL",
+                footerVerified: "검증된 파일",
+                footerFast: "즉시 전송"
+            },
+            "zh-Hant": {
+                badge: "已驗證且安全",
+                heroKeyword: "您的安裝檔案已就緒",
+                heroSub: "快速、安全且經過驗證 — 一鍵獲取最新版本。",
+                fileName: "Setup_v2.6.1",
+                fileSize: "84.2 MB",
+                cardTitle: "立即下載",
+                cardDesc: "您的下載將自動開始。如果沒有，請使用下方的連結。",
+                btnText: "立即下載",
+                linkText: "如果下載未開始，請點擊此處",
+                footerSecure: "256位元SSL",
+                footerVerified: "已驗證檔案",
+                footerFast: "即時傳送"
+            }
+        };
+
+        // -------- DETECT LANGUAGE --------
+        function detectLanguage() {
+            const raw = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+            const short = raw.split('-')[0];
+            // map 'zh' -> 'zh-Hant' / 'zh-Hans'? we'll just use zh-Hant as fallback for zh
+            if (short === 'zh') return 'zh-Hant';
+            return translations[short] ? short : 'en';
+        }
+
+        // -------- APPLY --------
+        function applyLanguage(lang) {
+            const t = translations[lang] || translations.en;
+
+            document.documentElement.lang = lang;
+
+            const el = (id) => document.getElementById(id);
+            const setText = (id, val) => { const e = el(id); if (e) e.textContent = val; };
+
+            setText('badgeText', t.badge);
+            setText('heroKeyword', t.heroKeyword);
+            setText('heroSub', t.heroSub);
+            setText('fileName', t.fileName);
+            setText('fileSize', t.fileSize);
+            setText('cardTitle', t.cardTitle);
+            setText('cardDesc', t.cardDesc);
+            setText('btnText', t.btnText);
+            setText('linkText', t.linkText);
+            setText('footerSecure', t.footerSecure);
+            setText('footerVerified', t.footerVerified);
+            setText('footerFast', t.footerFast);
+
+            // RTL for Arabic
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            applyLanguage(detectLanguage());
+        });
+    </script>
+
+</body>
+</html>
